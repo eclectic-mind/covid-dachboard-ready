@@ -1,0 +1,367 @@
+* {
+  vertical-align: baseline;
+	font-weight: inherit;
+	font-family: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	border: 0 none;
+	outline: 0;
+	padding: 0;
+	margin: 0;
+  box-sizing: border-box;
+
+  color: wheat;
+}
+
+*:focus
+{
+  outline: none;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 100%;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: black;
+  font-family: 'Quicksand', sans-serif;
+
+  height: 100vh;
+  padding: 0;
+  ;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr repeat(2, 1fr);
+  grid-template-rows: 0.3fr 0.5fr 2fr 1fr 0.3fr;
+  gap: 5px 5px;
+  /* width: 90%;
+  max-width: 1240px; */
+  width: 100vw;
+  min-width: 500px;
+  margin: 0px auto 0px auto;
+  height: 100vh;
+  transition: .5s;
+  padding: 0;
+  margin: 0;
+  grid-template-areas:
+    "header header header header"
+    "global_cases map deaths recoveries"
+    "countries map deaths recoveries"
+    "countries map charts charts"
+    "updated footer charts charts";
+
+}
+
+.header {
+display: grid;
+grid-template-columns: 0.8fr 1.2fr;
+grid-template-rows: 1fr;
+gap: 0px 0px;
+grid-template-areas:
+  "header__logo header__title"
+  "header__logo header__title";
+grid-area: header;
+
+}
+
+.header__logo {
+grid-area: header__logo;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+margin-top: 2px;
+}
+
+.header__title {
+grid-area: header__title;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+color: #bdbdbd;
+margin-left: 5px;
+font-size: 130%;
+}
+
+.footer {
+display: grid;
+grid-template-columns: 1.4fr 0.6fr 1fr;
+grid-template-rows: 1fr;
+gap: 0px 0px;
+grid-template-areas:
+"footer__git footer__year footer__rss"
+"footer__git footer__year footer__rss";
+grid-area: footer;
+}
+.footer__git {
+grid-area: footer__git;
+display: flex;
+flex-wrap: nowrap;
+align-content: space-between;
+justify-content: start;
+align-items: center;
+padding-left: 5px;
+margin-top: 5px;
+}
+.footer__year {
+grid-area: footer__year;
+margin: 15px auto;
+padding: 0px 5px;
+}
+.footer__rss {
+grid-area: footer__rss;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+}
+.map {
+display: block;
+grid-template-columns: 1fr 2fr 1fr;
+grid-template-rows: 1.85fr 0.15fr;
+gap: 0px 0px;
+grid-template-areas:
+    "map__image map__image map__image"
+    "map__left map__input map__right";
+grid-area: map;
+overflow: hidden;
+}
+/*.map__image { grid-area: map__image; }*/
+/*.map__input { grid-area: map__input; }*/
+/*.map__left { grid-area: map__left; }*/
+/*.map__right { grid-area: map__right; }*/
+.global_cases {
+  grid-area: global_cases;
+  background-color: rgb(64, 64, 64);
+}
+.updated {
+  grid-area: updated;
+  background-color: rgb(64, 64, 64);
+  }
+.charts {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  display: grid;
+    grid-template-columns: 0.3fr 1fr 0.3fr;
+    grid-template-rows: 1.7fr 0.4fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "charts__diagram charts__diagram charts__diagram"
+        "charts__left charts__input charts__right";
+    grid-area: charts;
+}
+svg {
+  display: block;
+}
+rect {
+  fill: steelblue;
+}
+.y.axis line, .x.axis line {
+  fill : none;
+  stroke: #cfcfcf;
+}
+.x.axis .tick:first-of-type text {
+  transform: translateX(10px);
+}
+.x.axis .tick:last-of-type text {
+  transform: translateX(-10px);
+}
+.y.axis .tick:first-of-type text {
+  transform: translateY(-5px);
+}
+.y.axis .tick:last-of-type text {
+  transform: translateY(0px);
+}
+.axis path,
+.axis line {
+fill: none;
+stroke: #000;
+shape-rendering: crispEdges;
+}
+
+
+.charts__diagram { grid-area: charts__diagram; }
+.charts__left { grid-area: charts__left; }
+.charts__right { grid-area: charts__right; }
+.charts__input { grid-area: charts__input; }
+.countries {
+  overflow-x: scroll;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 0.2fr;
+  grid-template-rows: 1.8fr 0.2fr;
+  gap: 0px 0px;
+  grid-template-areas:
+        "countries__table countries__table countries__table"
+        "countries__left countries__input countries__right";
+  grid-area: countries;
+}
+
+.countries__table { grid-area: countries__table; }
+.countries__input { grid-area: countries__input; }
+.countries__left { grid-area: countries__left; }
+.countries__right { grid-area: countries__right; }
+.deaths {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: grid;
+    grid-template-columns: 0.2fr 1fr 0.2fr;
+    grid-template-rows: 1.8fr 0.2fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "deaths__table deaths__table deaths__table"
+        "deaths__left deaths__input deaths__right";
+    grid-area: deaths;
+}
+.deaths__table { grid-area: deaths__table; }
+.deaths__left { grid-area: deaths__left; }
+.deaths__right { grid-area: deaths__right; }
+.deaths__input { grid-area: deaths__input; }
+.recoveries {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: grid;
+    grid-template-columns: 0.2fr 1fr 0.2fr;
+    grid-template-rows: 1.8fr 0.2fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "recov__table recov__table recov__table"
+        "recov__left recov__input recov__right";
+    grid-area: recoveries;
+}
+.recov__table { grid-area: recov__table; }
+.recov__input { grid-area: recov__input; }
+.recov__left { grid-area: recov__left; }
+.recov__right { grid-area: recov__right; }
+
+.footer-icon a img {
+  height: 1.5em;
+}
+
+.footer-icon a:hover {
+  transform: scale(1.1);
+  filter: invert(1);
+  transition: all 1s ease-in-out;
+}
+
+.header__logo a img {
+  height: 2em;
+  width: auto;
+}
+
+.header__logo a img:hover {
+  transform: rotate(360deg);
+  transition: 3s;
+}
+
+.header, .footer, .map, .charts, .countries, .global_cases, .deaths, .recoveries, .updated {
+
+  background-color: rgb(64, 64, 64);
+  border: #4c4c4c solid 0.1em;
+  border-radius: 1px;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  max-width: 70%;
+  position: relative;
+}
+
+.input input{
+  margin: 3px;
+  max-width: 130px;
+  background-color: transparent;
+  border: solid 0.1em #4c4c4c;
+  position: absolute;
+}
+
+.input input:hover, .input input:focus{
+  background-color: #4c4c4c;
+}
+
+.btn-left {
+   display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px 2px;
+}
+
+.btn-right {
+  display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px 2px;
+}
+
+.btn-left:hover, .btn-right:hover {
+  transform: scale(1.05);
+  transition: all 0.5s ease-in-out;
+  filter: drop-shadow(2px 4px 6px #ffffff);
+}
+
+/*все для карты*/
+.map {
+  /*display: table;*/
+  /*height: 600px;*/
+  /*width: 600px;*/
+}
+#map {
+  height: 100%;
+  width: 100%;
+  /*display: table-column;*/
+}
+
+
+.icon-marker {
+
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  width: 3.6em;
+  height: 3.6em;
+  font-size: .7em;
+  font-weight: bold;
+  background-color: darkred;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, .9);
+}
+
+.icon-marker:hover .icon-marker-tooltip {
+  display: block;
+}
+
+.icon-marker-tooltip {
+  display: none;
+  position: absolute;
+  bottom: 100%;
+  width: 16em;
+  font-size: 1.4em;
+  padding: 1em;
+  background-color: #292929;
+  border-radius: .4em;
+  margin-bottom: 1em;
+  box-shadow: 0 3px 5px rgba(255, 255, 255, .9);
+}
+
+.icon-marker-tooltip:before {
+  display: block;
+  position: absolute;
+  bottom: -.6em;
+  left: 50%;
+  content: '';
+  width: 1.4em;
+  height: 1.4em;
+  background-color: #292929;
+  transform: rotate(45deg);
+  margin-left: -.7em;
+}
+
